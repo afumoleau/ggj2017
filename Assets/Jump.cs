@@ -11,6 +11,7 @@ public class Jump : MonoBehaviour {
 	bool crouching;
 	[HideInInspector] public bool rotating;
 	new Rigidbody2D rigidbody;
+	bool screenTouchedLastFrame;
 	
 	public float deepness;
 	public float rotationSpeed;
@@ -37,20 +38,21 @@ public class Jump : MonoBehaviour {
 	}
 	
 	void Update() {
+		var screenTouched = (Input.touchCount > 0);
 
 		deepness = (floatingPoint.position.y - transform.position.y);
 
 		if(alive) {
-			if(Input.GetButtonDown("Jump")) {
+			if(Input.GetButtonDown("Jump") || (screenTouched && !screenTouchedLastFrame)) {
 				crouchTime = 0f;
 				OnCrouchTimeChange.Invoke(crouchTime / maxCrouchTime);
 				if(isInWater) {
 					crouching = true;
 				} else {
-					rotating = true;
+					rotating = true;	
 				}
 			}
-			else if(Input.GetButtonUp("Jump")) {
+			else if(Input.GetButtonUp("Jump") || (!screenTouched && screenTouchedLastFrame)) {
 				crouching = false;
 				rotating = false;
 				if(isInWater) {
@@ -71,7 +73,9 @@ public class Jump : MonoBehaviour {
 			alive = false;
 			StartCoroutine(Drift());
 		}
-		OnDeepnessChange.Invoke(deepness);
+		OnDeepnessChange.Invoke(alive ? deepness : 0f);
+
+		screenTouchedLastFrame = (Input.touchCount > 0);
 	}
 
 	IEnumerator Drift() {

@@ -546,7 +546,7 @@ RectTransform:
   m_GameObject: {fileID: 656820183}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 283956185}
   m_RootOrder: 1
@@ -947,7 +947,6 @@ GameObject:
   - component: {fileID: 1225365862}
   - component: {fileID: 1225365865}
   - component: {fileID: 1225365864}
-  - component: {fileID: 1225365863}
   - component: {fileID: 1225365866}
   m_Layer: 0
   m_Name: Wake
@@ -969,20 +968,6 @@ Transform:
   m_Father: {fileID: 257967564}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
---- !u!114 &1225365863
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1225365861}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8582c2989ee04d742bb2b7baac0dd3f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buoyancyEffector: {fileID: 63968785}
-  absolutePosition: {x: 0, y: -1.65, z: 0}
-  displacementFactor: 5
 --- !u!199 &1225365864
 ParticleSystemRenderer:
   serializedVersion: 2
@@ -1088,7 +1073,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1641020252
+  randomSeed: -1290776320
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -3580,7 +3565,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   emissionRateFactor: 0
-  maxEmissionRate: 250
+  maxEmissionRate: 500
   factor: 1
 --- !u!1 &1302497072
 GameObject:
@@ -3869,6 +3854,48 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!1001 &1843484457
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 498412, guid: 970dd4b9371394fb4890965f608d46fd, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 498412, guid: 970dd4b9371394fb4890965f608d46fd, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 498412, guid: 970dd4b9371394fb4890965f608d46fd, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 498412, guid: 970dd4b9371394fb4890965f608d46fd, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 498412, guid: 970dd4b9371394fb4890965f608d46fd, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 498412, guid: 970dd4b9371394fb4890965f608d46fd, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 498412, guid: 970dd4b9371394fb4890965f608d46fd, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 498412, guid: 970dd4b9371394fb4890965f608d46fd, type: 2}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 970dd4b9371394fb4890965f608d46fd, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &2081774212
 GameObject:
   m_ObjectHideFlags: 0
@@ -3879,7 +3906,6 @@ GameObject:
   - component: {fileID: 2081774217}
   - component: {fileID: 2081774216}
   - component: {fileID: 2081774215}
-  - component: {fileID: 2081774214}
   - component: {fileID: 2081774213}
   m_Layer: 0
   m_Name: Wake
@@ -3900,22 +3926,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   emissionRateFactor: 0
-  maxEmissionRate: 250
+  maxEmissionRate: 500
   factor: 0
---- !u!114 &2081774214
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2081774212}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8582c2989ee04d742bb2b7baac0dd3f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buoyancyEffector: {fileID: 63968785}
-  absolutePosition: {x: 0, y: -1.65, z: 0}
-  displacementFactor: 5
 --- !u!199 &2081774215
 ParticleSystemRenderer:
   serializedVersion: 2
@@ -4021,7 +4033,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -292424929
+  randomSeed: -824400026
   InitialModule:
     serializedVersion: 3
     enabled: 1

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class ScoreManager : MonoBehaviour {
 
@@ -28,14 +29,24 @@ public class ScoreManager : MonoBehaviour {
 		if(countingAirTime && surfer.isInWater) {
 			countingAirTime = false;
 			if(amountRotated > 680f) {
-				airTimeText.text = string.Format("720° {0:.00}s!!", airTimeClock);
+				showText(string.Format("720° {0:.00}s!!", airTimeClock));
 			} else if(amountRotated > 340f) {
-				airTimeText.text = string.Format("360° {0:.00}s!", airTimeClock);
+				showText(string.Format("360° {0:.00}s!", airTimeClock));
 			} else if(airTimeClock > airTimeThreshold) {
-				airTimeText.text = string.Format("AIR TIME {0:.00}s", airTimeClock);
+				showText(string.Format("AIR TIME {0:.00}s", airTimeClock));
 			}
 			airTimeClock = 0f;
 		}
+	}
 
+	void showText(string text) {
+		airTimeText.text = text;
+		airTimeText.transform.localScale = Vector3.zero;
+		airTimeText.transform.eulerAngles = Vector3.zero;
+		var sequence = DOTween.Sequence();
+		sequence.Append(airTimeText.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack));
+		sequence.Insert(0f, airTimeText.transform.DORotate(Vector3.forward * -10f, 0.5f).SetEase(Ease.OutBack));
+		sequence.AppendInterval(1.5f);
+		sequence.Append(airTimeText.transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InBack));
 	}
 }
