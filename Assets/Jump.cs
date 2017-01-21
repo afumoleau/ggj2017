@@ -12,8 +12,10 @@ public class Jump : MonoBehaviour {
 	[SerializeField] float jumpPower;
 	[SerializeField] float seaAltitude;
 	public float deepness;
+	[SerializeField] float maxCrouchTime;
 
 	[SerializeField] FloatEvent OnDeepnessChange;
+	[SerializeField] FloatEvent OnCrouchTimeChange;
 
 	void Awake() {
 		rigidbody = GetComponent<Rigidbody2D>();
@@ -23,15 +25,17 @@ public class Jump : MonoBehaviour {
 		if(Input.GetButtonDown("Jump")) {
 			Debug.Log("crouch");
 			crouchTime = 0f;
-			crouching = true;
+			OnCrouchTimeChange.Invoke(crouchTime / maxCrouchTime);
 			if(transform.position.y <= seaAltitude) {
-
+				crouching = true;
 			}
 		}
 		if(crouching && transform.position.y <= seaAltitude) {
-			crouchTime += Time.deltaTime;
+			crouchTime = Mathf.Clamp(crouchTime + Time.deltaTime, 0f, maxCrouchTime);
+			OnCrouchTimeChange.Invoke(crouchTime / maxCrouchTime);
 		}
 		if(Input.GetButtonUp("Jump")) {
+			crouching = false;
 			if(transform.position.y <= seaAltitude) {
 				Debug.Log("jump, time = "+crouchTime);
 				rigidbody.AddForce(Vector2.up * crouchTime * jumpPower);
