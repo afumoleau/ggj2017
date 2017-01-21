@@ -29,6 +29,10 @@ public class GameManager : MonoBehaviour {
 	[SerializeField] RectTransform highscoresUI;
 	[SerializeField] RectTransform gameUI;
 
+
+	[SerializeField] AudioSource intro;
+	[SerializeField] AudioSource music;
+
 	public void ShowGameModeSelection() {
 		var sequence = DOTween.Sequence();
 		sequence.AppendInterval(1f);
@@ -71,7 +75,13 @@ public class GameManager : MonoBehaviour {
 			surfer.gameObject.SetActive(true);
 		});
 
+		var volume = music.volume;
+		var audioSequence = DOTween.Sequence();
+		audioSequence.Append(intro.DOFade(0, 1f));
+		audioSequence.AppendCallback(() => { music.volume = 0f; music.Play(); });
+		audioSequence.Append(music.DOFade(volume, 1f));
 	}
+
 	public void Quit() {
 		Application.Quit();
 	}

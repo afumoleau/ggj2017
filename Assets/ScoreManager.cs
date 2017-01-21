@@ -11,10 +11,14 @@ public class ScoreManager : MonoBehaviour {
 	bool countingAirTime;
 	float airTimeClock;
 	float amountRotated;
-
+	bool landedOnce = false;
 
 	void Update () {
-		if(!surfer.isInWater && !countingAirTime) {
+		if(surfer.isInWater && !landedOnce) {
+			landedOnce = true;
+		}
+
+		if(!surfer.isInWater && !countingAirTime && landedOnce) {
 			countingAirTime = true;
 			amountRotated = 0f;
 		}
