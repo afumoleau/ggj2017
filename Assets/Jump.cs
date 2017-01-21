@@ -17,12 +17,17 @@ public class Jump : MonoBehaviour {
 	public float deepness;
 	public float rotationSpeed;
 
-	bool alive = true;
+	public bool alive = true;
 	[SerializeField] Transform floatingPoint;
 	[SerializeField] float jumpPower;
 	[SerializeField] float maxCrouchTime;
 	[SerializeField] float maxCrouchOvertime;
 	[SerializeField] float landingAngleTolerance;
+
+	[SerializeField] SpriteRenderer graphics;
+	[SerializeField] Sprite standSprite;
+	[SerializeField] Sprite crouchSprite;
+	[SerializeField] Sprite flySprite;
 
 	[SerializeField] FloatEvent OnDeepnessChange;
 	[SerializeField] FloatEvent OnCrouchTimeChange;
@@ -88,6 +93,14 @@ public class Jump : MonoBehaviour {
 		OnDeepnessChange.Invoke(alive ? deepness : 0f);
 
 		screenTouchedLastFrame = (Input.touchCount > 0);
+
+		if(!isInWater) {
+			graphics.sprite = flySprite;
+		} else if (crouching) {
+			graphics.sprite = crouchSprite;
+		} else {
+			graphics.sprite = standSprite;
+		}
 	}
 
 	IEnumerator Drift() {

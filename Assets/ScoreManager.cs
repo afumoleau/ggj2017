@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using DG.Tweening;
 
@@ -12,6 +13,12 @@ public class ScoreManager : MonoBehaviour {
 	float airTimeClock;
 	float amountRotated;
 	bool landedOnce = false;
+	bool aliveLastFrame = true;
+	
+	[SerializeField] UnityEvent OnFail;
+	[SerializeField] UnityEvent OnJump;
+	[SerializeField] UnityEvent On360;
+	[SerializeField] UnityEvent On720;
 
 	void Update () {
 		if(surfer.isInWater && !landedOnce) {
@@ -35,16 +42,23 @@ public class ScoreManager : MonoBehaviour {
 			if(surfer.isStanding) {
 				if(amountRotated > 680f) {
 					showText(string.Format("720° {0:.00}s!!", airTimeClock));
+					On720.Invoke();
 				} else if(amountRotated > 340f) {
 					showText(string.Format("360° {0:.00}s!", airTimeClock));
+					On360.Invoke();
 				} else if(airTimeClock > airTimeThreshold) {
 					showText(string.Format("AIR TIME {0:.00}s", airTimeClock));
+					OnJump.Invoke();
 				}
-			} else {
-				showText(string.Format("FAIL", airTimeClock));
 			}
 			airTimeClock = 0f;
 		}
+
+		if(aliveLastFrame && !surfer.alive) {
+			showText(string.Format("FAIL", airTimeClock));
+			OnFail.Invoke();
+		}
+		aliveLastFrame = surfer.alive;
 	}
 
 	void showText(string text) {
