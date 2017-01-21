@@ -8,6 +8,7 @@ public class Jump : MonoBehaviour {
 	public class FloatEvent : UnityEvent<float> {};
 
 	float crouchTime;
+	float crouchOvertime;
 	bool crouching;
 	[HideInInspector] public bool rotating;
 	new Rigidbody2D rigidbody;
@@ -20,10 +21,12 @@ public class Jump : MonoBehaviour {
 	[SerializeField] Transform floatingPoint;
 	[SerializeField] float jumpPower;
 	[SerializeField] float maxCrouchTime;
+	[SerializeField] float maxCrouchOvertime;
 	[SerializeField] float landingAngleTolerance;
 
 	[SerializeField] FloatEvent OnDeepnessChange;
 	[SerializeField] FloatEvent OnCrouchTimeChange;
+	[SerializeField] FloatEvent OnCrouchOvertimeChange;
 	[SerializeField] UnityEvent OnDead;
 
 	public bool isInWater { get { return deepness > 0f; }}
@@ -60,7 +63,17 @@ public class Jump : MonoBehaviour {
 			}
 
 			if(crouching && isInWater) {
-				crouchTime = Mathf.Clamp(crouchTime + Time.deltaTime, 0f, maxCrouchTime);
+				crouchTime = crouchTime + Time.deltaTime;
+
+				if(crouchTime > maxCrouchTime) {
+					crouchTime = maxCrouchTime;
+					crouchOvertime += Time.deltaTime;
+					OnCrouchOvertimeChange.Invoke(crouchOvertime / maxCrouchOvertime);
+					if(crouchOvertime > maxCrouchOvertime) {
+						alive = false;
+						StartCoroutine(Drift());
+					}
+				}
 				OnCrouchTimeChange.Invoke(crouchTime / maxCrouchTime);
 			}
 			if(rotating && !isInWater) {
@@ -94,6 +107,10 @@ public class Jump : MonoBehaviour {
 	public void Restart() {
 		rigidbody.simulated = true;
 		alive = true;
+		crouchTime = 0f;
+		crouchOvertime = 0f;
+		OnCrouchTimeChange.Invoke(0f);
+		OnCrouchOvertimeChange.Invoke(0f);
 		crouching = false;
 		rotating = false;
 		transform.position = initialPosition;
@@ -109,5 +126,7 @@ public class Jump : MonoBehaviour {
 		}
 		crouchTime = 0f;
 		OnCrouchTimeChange.Invoke(crouchTime / maxCrouchTime);
+		crouchOvertime = 0f;
+		OnCrouchOvertimeChange.Invoke(0f);
 	}
 }

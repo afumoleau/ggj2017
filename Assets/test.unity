@@ -445,6 +445,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 116}
+  - component: {fileID: 69}
   m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
@@ -3516,7 +3517,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1366326783
+  randomSeed: -229841649
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -6096,6 +6097,23 @@ ParticleSystemRenderer:
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
+--- !u!114 &69
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 35}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feac930d675cf474e871fa4ffa203e43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeScale: 100
+  xOffset: 6
+  xAmplitude: 4
+  yOffset: 9
+  yAmplitude: 4
+  amplitude: 0
 --- !u!222 &70
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6929,6 +6947,7 @@ MonoBehaviour:
   xAmplitude: 5
   yOffset: 9
   yAmplitude: 5
+  amplitude: 1
 --- !u!114 &138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6964,6 +6983,7 @@ MonoBehaviour:
   floatingPoint: {fileID: 44}
   jumpPower: 350
   maxCrouchTime: 1
+  maxCrouchOvertime: 1
   landingAngleTolerance: 30
   OnDeepnessChange:
     m_PersistentCalls:
@@ -6997,6 +7017,33 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1208425951}
         m_MethodName: set_fillAmount
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: Jump+FloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  OnCrouchOvertimeChange:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 69}
+        m_MethodName: setAmplitude
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1809691255}
+        m_MethodName: setAmplitude
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7520,6 +7567,7 @@ MonoBehaviour:
   xAmplitude: 5
   yOffset: 6
   yAmplitude: 5
+  amplitude: 1
 --- !u!114 &166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7550,6 +7598,7 @@ MonoBehaviour:
   xAmplitude: 5
   yOffset: 4
   yAmplitude: 5
+  amplitude: 1
 --- !u!1 &218259509
 GameObject:
   m_ObjectHideFlags: 0
@@ -7691,6 +7740,7 @@ MonoBehaviour:
   xAmplitude: 5
   yOffset: 10
   yAmplitude: 5
+  amplitude: 1
 --- !u!114 &561592601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7776,6 +7826,7 @@ MonoBehaviour:
   xAmplitude: 5
   yOffset: 9
   yAmplitude: 5
+  amplitude: 1
 --- !u!114 &594680182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7863,6 +7914,7 @@ MonoBehaviour:
   xAmplitude: 5
   yOffset: 6
   yAmplitude: 5
+  amplitude: 1
 --- !u!114 &879563805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8000,6 +8052,7 @@ MonoBehaviour:
   xAmplitude: 5
   yOffset: 17
   yAmplitude: 5
+  amplitude: 1
 --- !u!114 &1028036358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8361,6 +8414,7 @@ MonoBehaviour:
   xAmplitude: 5
   yOffset: 4
   yAmplitude: 5
+  amplitude: 1
 --- !u!114 &1608165502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8678,6 +8732,7 @@ MonoBehaviour:
   xAmplitude: 5
   yOffset: 9
   yAmplitude: 5
+  amplitude: 1
 --- !u!114 &1643546157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8859,6 +8914,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1809691253}
   - component: {fileID: 1809691254}
+  - component: {fileID: 1809691255}
   m_Layer: 8
   m_Name: Sprite
   m_TagString: Untagged
@@ -8914,6 +8970,23 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!114 &1809691255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1809691252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feac930d675cf474e871fa4ffa203e43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeScale: 100
+  xOffset: 6
+  xAmplitude: 0.05
+  yOffset: 9
+  yAmplitude: 0.05
+  amplitude: 0
 --- !u!1 &1943108335
 GameObject:
   m_ObjectHideFlags: 0
