@@ -28,7 +28,7 @@ public class Jump : MonoBehaviour {
 
 	public bool isInWater { get { return deepness > 0f; }}
 	bool isFalling { get { return rigidbody.velocity.y < 0f; }}
-	bool isStanding { get { return Mathf.Abs(Mathf.DeltaAngle(transform.eulerAngles.z, 0f)) <= landingAngleTolerance; }}
+	public bool isStanding { get { return Mathf.Abs(Mathf.DeltaAngle(transform.eulerAngles.z, 0f)) <= landingAngleTolerance; }}
 
 	Vector3 initialPosition;
 
@@ -44,8 +44,6 @@ public class Jump : MonoBehaviour {
 
 		if(alive) {
 			if(Input.GetButtonDown("Jump") || (screenTouched && !screenTouchedLastFrame)) {
-				crouchTime = 0f;
-				OnCrouchTimeChange.Invoke(crouchTime / maxCrouchTime);
 				if(isInWater) {
 					crouching = true;
 				} else {
@@ -57,6 +55,7 @@ public class Jump : MonoBehaviour {
 				rotating = false;
 				if(isInWater) {
 					rigidbody.AddForce(Vector2.up * crouchTime * jumpPower);
+					StartCoroutine(ResetCrouchTime());
 				}
 			}
 
@@ -99,5 +98,16 @@ public class Jump : MonoBehaviour {
 		rotating = false;
 		transform.position = initialPosition;
 		transform.localEulerAngles = Vector3.zero;
+	}
+
+	IEnumerator ResetCrouchTime() {
+		var initial = crouchTime;
+		for(var clock = 0f; clock < 0.25f; clock += Time.deltaTime) {
+			crouchTime = Mathf.Lerp(initial, 0f, clock / 0.25f);
+			OnCrouchTimeChange.Invoke(crouchTime / maxCrouchTime);
+			yield return null;
+		}
+		crouchTime = 0f;
+		OnCrouchTimeChange.Invoke(crouchTime / maxCrouchTime);
 	}
 }

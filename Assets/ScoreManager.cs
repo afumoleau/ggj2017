@@ -28,12 +28,16 @@ public class ScoreManager : MonoBehaviour {
 
 		if(countingAirTime && surfer.isInWater) {
 			countingAirTime = false;
-			if(amountRotated > 680f) {
-				showText(string.Format("720° {0:.00}s!!", airTimeClock));
-			} else if(amountRotated > 340f) {
-				showText(string.Format("360° {0:.00}s!", airTimeClock));
-			} else if(airTimeClock > airTimeThreshold) {
-				showText(string.Format("AIR TIME {0:.00}s", airTimeClock));
+			if(surfer.isStanding) {
+				if(amountRotated > 680f) {
+					showText(string.Format("720° {0:.00}s!!", airTimeClock));
+				} else if(amountRotated > 340f) {
+					showText(string.Format("360° {0:.00}s!", airTimeClock));
+				} else if(airTimeClock > airTimeThreshold) {
+					showText(string.Format("AIR TIME {0:.00}s", airTimeClock));
+				}
+			} else {
+				showText(string.Format("FAIL", airTimeClock));
 			}
 			airTimeClock = 0f;
 		}
