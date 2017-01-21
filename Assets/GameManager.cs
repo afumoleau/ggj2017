@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using DG.Tweening;
+using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
@@ -29,34 +30,47 @@ public class GameManager : MonoBehaviour {
 	[SerializeField] RectTransform gameUI;
 
 	public void ShowGameModeSelection() {
-		startUI.gameObject.SetActive(false);
-		gameSelectionUI.gameObject.SetActive(true);
-		tutorialUI.gameObject.SetActive(false);
-		highscoresUI.gameObject.SetActive(false);
-		gameUI.gameObject.SetActive(false);
+		var sequence = DOTween.Sequence();
+		sequence.AppendInterval(1f);
+		sequence.AppendCallback(() => {
+			startUI.gameObject.SetActive(false);
+			gameSelectionUI.gameObject.SetActive(true);
+		});
 	}
 	public void ShowHighscore() {
-		startUI.gameObject.SetActive(false);
-		gameSelectionUI.gameObject.SetActive(false);
-		tutorialUI.gameObject.SetActive(false);
-		highscoresUI.gameObject.SetActive(true);
-		gameUI.gameObject.SetActive(false);
+		var sequence = DOTween.Sequence();
+		sequence.AppendInterval(1f);
+		sequence.AppendCallback(() => {
+			startUI.gameObject.SetActive(false);
+			gameSelectionUI.gameObject.SetActive(false);
+			tutorialUI.gameObject.SetActive(false);
+			highscoresUI.gameObject.SetActive(true);
+			gameUI.gameObject.SetActive(false);
+		});
 	}
 	public void ShowTutorial() {
-		startUI.gameObject.SetActive(false);
-		gameSelectionUI.gameObject.SetActive(false);
-		tutorialUI.gameObject.SetActive(true);
-		highscoresUI.gameObject.SetActive(false);
-		gameUI.gameObject.SetActive(false);
+		var sequence = DOTween.Sequence();
+		sequence.AppendInterval(1f);
+		sequence.AppendCallback(() => {
+			startUI.gameObject.SetActive(false);
+			gameSelectionUI.gameObject.SetActive(false);
+			tutorialUI.gameObject.SetActive(true);
+			highscoresUI.gameObject.SetActive(false);
+			gameUI.gameObject.SetActive(false);
+		});
 	}
 	public void StartGame() {
-		startUI.gameObject.SetActive(false);
-		gameSelectionUI.gameObject.SetActive(false);
-		tutorialUI.gameObject.SetActive(false);
-		highscoresUI.gameObject.SetActive(false);
-		gameUI.gameObject.SetActive(true);
-		
-		surfer.gameObject.SetActive(true);
+		var sequence = DOTween.Sequence();
+		sequence.AppendInterval(1f);
+		sequence.AppendCallback(() => {
+			startUI.gameObject.SetActive(false);
+			gameSelectionUI.gameObject.SetActive(false);
+			tutorialUI.gameObject.SetActive(false);
+			highscoresUI.gameObject.SetActive(false);
+			gameUI.gameObject.SetActive(true);
+			surfer.gameObject.SetActive(true);
+		});
+
 	}
 	public void Quit() {
 		Application.Quit();
