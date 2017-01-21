@@ -4,7 +4,7 @@ public class GameManager : MonoBehaviour {
 
 	public static GameManager instance;
 	
-	public Jump surfer; 
+	[SerializeField] Jump surfer; 
 
 	void Awake() {
 		if(instance != null) {

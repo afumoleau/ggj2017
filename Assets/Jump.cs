@@ -9,22 +9,23 @@ public class Jump : MonoBehaviour {
 
 	float crouchTime;
 	bool crouching;
-	bool rotating;
+	[HideInInspector] public bool rotating;
 	new Rigidbody2D rigidbody;
+	
 	public float deepness;
+	public float rotationSpeed;
 
 	bool alive = true;
 	[SerializeField] Transform floatingPoint;
 	[SerializeField] float jumpPower;
 	[SerializeField] float maxCrouchTime;
-	[SerializeField] float rotationSpeed;
 	[SerializeField] float landingAngleTolerance;
 
 	[SerializeField] FloatEvent OnDeepnessChange;
 	[SerializeField] FloatEvent OnCrouchTimeChange;
 	[SerializeField] UnityEvent OnDead;
 
-	bool isInWater { get { return deepness > 0f; }}
+	public bool isInWater { get { return deepness > 0f; }}
 	bool isFalling { get { return rigidbody.velocity.y < 0f; }}
 	bool isStanding { get { return Mathf.Abs(Mathf.DeltaAngle(transform.eulerAngles.z, 0f)) <= landingAngleTolerance; }}
 
