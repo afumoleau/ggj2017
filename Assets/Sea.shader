@@ -6,6 +6,7 @@
 Shader "Custom/Sea" {
 Properties {
 	_MainTex ("Base (RGB) Trans (A)", 2D) = "white" {}
+	_WaveAmplitude("Wave Amplitude", Float) = 0.15
 }
 
 SubShader {
@@ -41,6 +42,7 @@ SubShader {
 
 			sampler2D _MainTex;
 			float4 _MainTex_ST;
+			float _WaveAmplitude;
 			
 			v2f vert (appdata_t v)
 			{
@@ -57,7 +59,7 @@ SubShader {
 			fixed4 frag (v2f i) : SV_Target
 			{
 				float2 texcoord = i.texcoord;
-				texcoord.y = clamp(texcoord.y + 0.15*sin(5*texcoord.x), 0.01, 0.99);
+				texcoord.y = clamp(texcoord.y + _WaveAmplitude*sin(5*texcoord.x), 0.01, 0.99);
 				texcoord.x -= _Time.y * 0.15;
 				fixed4 col = tex2D(_MainTex, texcoord) * i.color;
 				UNITY_APPLY_FOG(i.fogCoord, col);
