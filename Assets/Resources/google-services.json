@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "674362559028",
+    "firebase_url": "https://super-waves-surfing.firebaseio.com",
+    "project_id": "super-waves-surfing",
+    "storage_bucket": "super-waves-surfing.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:674362559028:android:ee5c3a017ddf2583",
+        "android_client_info": {
+          "package_name": "com.eolhing.superwavessurfing"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "674362559028-8us8v6fm71pigurd04cf8qoiel1r7vm2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD93Mgf9k4cCdnBTMgC2uORBUplvBoDS6Y"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

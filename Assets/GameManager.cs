@@ -1,4 +1,6 @@
 ﻿using DG.Tweening;
+using Firebase;
+using Firebase.Unity.Editor;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour {
@@ -13,6 +15,8 @@ public class GameManager : MonoBehaviour {
 			return;
 		}
 		instance = this;
+
+		FirebaseApp.DefaultInstance.SetEditorDatabaseUrl("https://super-waves-surfing.firebaseio.com/");
 	}
 
 	void Start() {
@@ -33,6 +37,18 @@ public class GameManager : MonoBehaviour {
 	[SerializeField] AudioSource intro;
 	[SerializeField] AudioSource music;
 
+	public void ShowStartMenu() {
+		var sequence = DOTween.Sequence();
+		sequence.AppendInterval(1f);
+		sequence.AppendCallback(() => {
+			startUI.gameObject.SetActive(true);
+			gameSelectionUI.gameObject.SetActive(false);
+			tutorialUI.gameObject.SetActive(false);
+			highscoresUI.gameObject.SetActive(false);
+			gameUI.gameObject.SetActive(false);
+			surfer.gameObject.SetActive(false);
+		});
+	}
 	public void ShowGameModeSelection() {
 		var sequence = DOTween.Sequence();
 		sequence.AppendInterval(1f);
