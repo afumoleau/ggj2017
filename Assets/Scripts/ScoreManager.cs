@@ -115,6 +115,9 @@ public class ScoreManager : MonoBehaviour {
 	}
 
 	public void publishScore(string name, int score) {
+		if(name == "" || name == null) {
+			name = "anonymous";
+		}
 		DatabaseReference reference = FirebaseDatabase.DefaultInstance.RootReference;
 		string key = reference.Child("scores").Push().Key;
 		LeaderboardEntry entry = new LeaderboardEntry(name, score);
