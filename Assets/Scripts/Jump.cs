@@ -73,10 +73,13 @@ public class Jump : MonoBehaviour {
 				if(crouchTime > maxCrouchTime) {
 					crouchTime = maxCrouchTime;
 					crouchOvertime += Time.deltaTime;
-					OnCrouchOvertimeChange.Invoke(crouchOvertime / maxCrouchOvertime);
 					if(crouchOvertime > maxCrouchOvertime) {
 						alive = false;
 						StartCoroutine(Drift());
+						crouchOvertime = 0f;
+						OnCrouchOvertimeChange.Invoke(crouchOvertime / maxCrouchOvertime);
+					} else {
+						OnCrouchOvertimeChange.Invoke(crouchOvertime / maxCrouchOvertime);
 					}
 				}
 				OnCrouchTimeChange.Invoke(crouchTime / maxCrouchTime);
