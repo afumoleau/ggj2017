@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: 411b72dbf5577e640828a62bdacf4e65
-timeCreated: 1485015120
+guid: 9c0d093eaa6709a47a400c811f7dde91
+timeCreated: 1484949431
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: waves_0
+  fileIDToRecycleName: {}
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -31,16 +30,16 @@ TextureImporter:
     filterMode: 0
     aniso: -1
     mipBias: -1
-    wrapMode: 1
+    wrapMode: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
-  spriteExtrude: 1
+  spriteMode: 1
+  spriteExtrude: 0
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 31}
   spritePixelsToUnits: 100
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -85,22 +84,13 @@ TextureImporter:
     overridden: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: waves_0
-      rect:
-        serializedVersion: 2
-        x: 178
-        y: 163
-        width: 102
-        height: 38
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    outline: []
-  spritePackingTag: 
+    sprites: []
+    outline:
+    - - {x: -32, y: 32}
+      - {x: -32, y: -32}
+      - {x: 32, y: -32}
+      - {x: 32, y: 32}
+  spritePackingTag: Game
   userData: 
   assetBundleName: 
   assetBundleVariant: 

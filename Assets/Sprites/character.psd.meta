@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: bec2951a7c24a8c479cb7245429f642c
-timeCreated: 1485015101
+guid: 8ed32e72e5635d44dbdee3bd74cd787e
+timeCreated: 1485022820
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: surfing_0
+  fileIDToRecycleName: {}
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -35,7 +34,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -85,22 +84,9 @@ TextureImporter:
     overridden: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: surfing_0
-      rect:
-        serializedVersion: 2
-        x: 198
-        y: 132
-        width: 129
-        height: 38
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
+    sprites: []
     outline: []
-  spritePackingTag: 
+  spritePackingTag: Game
   userData: 
   assetBundleName: 
   assetBundleVariant: 
