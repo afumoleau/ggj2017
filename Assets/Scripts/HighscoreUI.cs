@@ -1,4 +1,7 @@
-﻿using Firebase.Database;
+﻿
+#if !UNITY_WEBGL
+using Firebase.Database;
+#endif
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
@@ -10,6 +13,7 @@ public class HighscoreUI : MonoBehaviour {
 	[SerializeField] Text[] scores;
 
 	public void GetHighscores() {
+#if !UNITY_WEBGL
 		foreach(var entry in entries) {
 			entry.SetActive(false);
 		}
@@ -33,5 +37,6 @@ public class HighscoreUI : MonoBehaviour {
 					}
 				}
 			});
+#endif
 	}
 }

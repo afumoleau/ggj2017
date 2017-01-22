@@ -1,6 +1,8 @@
 ﻿using DG.Tweening;
+#if !UNITY_WEBGL
 using Firebase;
 using Firebase.Unity.Editor;
+#endif
 using UnityEngine;
 
 public class GameManager : MonoBehaviour {
@@ -16,7 +18,9 @@ public class GameManager : MonoBehaviour {
 		}
 		instance = this;
 
+#if !UNITY_WEBGL
 		FirebaseApp.DefaultInstance.SetEditorDatabaseUrl("https://super-waves-surfing.firebaseio.com/");
+#endif
 	}
 
 	void Start() {

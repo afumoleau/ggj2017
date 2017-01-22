@@ -2,7 +2,9 @@
 using UnityEngine.Events;
 using UnityEngine.UI;
 using DG.Tweening;
+#if !UNITY_WEBGL
 using Firebase.Database;
+#endif
 using System.Collections.Generic;
 
 public class ScoreManager : MonoBehaviour {
@@ -115,6 +117,8 @@ public class ScoreManager : MonoBehaviour {
 	}
 
 	public void publishScore(string name, int score) {
+
+#if !UNITY_WEBGL
 		if(name == "" || name == null) {
 			name = "anonymous";
 		}
@@ -126,6 +130,7 @@ public class ScoreManager : MonoBehaviour {
 		childUpdates["/scores/" + key] = entryValues;
 		childUpdates["/user-scores/" + name + "/" + key] = entryValues;
 		reference.UpdateChildrenAsync(childUpdates);
+#endif
 	}
 
 	public void updateScore(int newScore) {
