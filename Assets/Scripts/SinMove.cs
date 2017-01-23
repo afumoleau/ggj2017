@@ -3,6 +3,7 @@
 public class SinMove : MonoBehaviour {
 
 	Vector3 initialPosition;
+	RectTransform rt;
 
 	public float timeScale = 1f;
 	public float xOffset = 0f;
@@ -19,12 +20,22 @@ public class SinMove : MonoBehaviour {
 	public void setAmplitude(float value) { amplitude = value; }
 
 	void Start() {
-		initialPosition = transform.localPosition;
+		rt = GetComponent<RectTransform>();
+		if(rt != null) {
+			initialPosition = rt.anchoredPosition;
+		} else {
+			initialPosition = transform.localPosition;
+		}
 	}
 
 	void Update () {
-		transform.localPosition = initialPosition + new Vector3(xAmplitude * amplitude * Mathf.Sin(xOffset + timeScale * Time.time),
-																yAmplitude * amplitude * Mathf.Sin(yOffset + timeScale * Time.time),
-																0);
+		var offset = new Vector3(xAmplitude * amplitude * Mathf.Sin(xOffset + timeScale * Time.time),
+								 yAmplitude * amplitude * Mathf.Sin(yOffset + timeScale * Time.time),
+								 0);
+		if(rt != null) {
+			rt.anchoredPosition = initialPosition + offset;
+		} else {
+			transform.localPosition = initialPosition + offset;
+		}
 	}
 }
