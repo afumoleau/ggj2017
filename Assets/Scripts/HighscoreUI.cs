@@ -1,7 +1,4 @@
-﻿
-#if !UNITY_WEBGL
-using Firebase.Database;
-#endif
+﻿using Firebase.Database;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
@@ -13,11 +10,10 @@ public class HighscoreUI : MonoBehaviour {
 	[SerializeField] Text[] scores;
 
 	public void GetHighscores() {
-#if !UNITY_WEBGL
 		foreach(var entry in entries) {
 			entry.SetActive(false);
 		}
-		FirebaseDatabase.DefaultInstance.GetReference("scores").OrderByChild("score")
+		FirebaseDatabase.DefaultInstance.GetReference("scores").OrderByChild("score").LimitToLast(7)
 			.GetValueAsync().ContinueWith(task => {
 				if (task.IsFaulted) {
 					Debug.LogError("Get score request failed");
@@ -37,6 +33,5 @@ public class HighscoreUI : MonoBehaviour {
 					}
 				}
 			});
-#endif
 	}
 }
